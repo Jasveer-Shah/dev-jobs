@@ -9,7 +9,7 @@ document.querySelector('.button-container').addEventListener('click', () =>{
     })
 })
 
-function getJobs(){
+function getJobs(){                   // first function
     return fetch("data.json")
     .then(response => response.json())
     .then(data => {
@@ -19,24 +19,24 @@ function getJobs(){
 }
 
 
-function filterJobs(jobs, searchText){
-    if(searchText){
+function filterJobs(jobs, text){
+    if(text){
         let filteredJobs = jobs.filter(job =>{
-            if(job.roleName.toLowerCase().includes(searchText) || 
-               job.type.toLowerCase().includes(searchText) ||
-               job.company.toLowerCase().includes(searchText) ||
-               job.requirements.content.toLowerCase().includes(searchText)){
+            if(job.roleName.toLowerCase().includes(text) || 
+               job.type.toLowerCase().includes(text) ||
+               job.company.toLowerCase().includes(text) ||
+               job.requirements.content.toLowerCase().includes(text)){
                    return true;
                }else {return false;
             }
         })
-        return filteredJobs;
+        return filteredJobs;     // if searchText is there then return filtered jobs otherwise show jobs
     }else {
         return jobs
     }
 
 }
-
+                                        // third function happens
 function showJobs(jobs){
     // console.log('jobs in showJobs', jobs);
     let jobsContainer  = document.querySelector('.jobs-container');
@@ -77,8 +77,8 @@ function showJobs(jobs){
 }
 
 
-// when the application is loaded
-getJobs().then(data => {
+// when the application is loaded     /// second function
+getJobs().then(data => {    
     showJobs(data);
 })
 
